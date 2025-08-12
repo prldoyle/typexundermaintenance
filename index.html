@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Typex — IT Infrastructure & Business Solutions</title>
+  <meta name="description" content="Typex - Complete IT solutions including network connectivity, VoIP systems, cyber security, and business software services." />
+  <link rel="canonical" href="https://typex.com/">
+  <style>
+    :root{
+      --bg1:#f8fafb;
+      --bg2:#ffffff;
+      --card:#ffffffee;
+      --accent:#007575;
+      --accent-2:#40e0d0;
+      --accent-3:#00a5a5;
+      --text:#1e293b;
+      --muted:#64748b;
+      --ring:#40e0d0;
+      --success:#10b981;
+      --shadow: 0 20px 40px rgba(0,0,0,.08);
+      --radius: 24px;
+      --glow: 0 0 40px rgba(0,117,117,.15);
+    }
+    
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0}
+    
+    body{
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, sans-serif;
+      color:var(--text);
+      background: 
+        radial-gradient(circle at 20% 50%, rgba(0,117,117,.08), transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(64,224,208,.06), transparent 50%),
+        radial-gradient(circle at 40% 20%, rgba(0,165,165,.05), transparent 60%),
+        linear-gradient(180deg, var(--bg1) 0%, var(--bg2) 100%);
+      min-height:100vh;
+      position:relative;
+      overflow-x:hidden;
+    }
+    
+    /* Animated background grid */
+    body::before{
+      content:'';
+      position:fixed;
+      top:0;left:0;right:0;bottom:0;
+      background-image: 
+        linear-gradient(rgba(0,117,117,.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,117,117,.02) 1px, transparent 1px);
+      background-size: 50px 50px;
+      animation: grid-move 20s linear infinite;
+      pointer-events:none;
+      z-index:0;
+    }
+    
+    @keyframes grid-move {
+      0%{transform:translate(0,0)}
+      100%{transform:translate(50px,50px)}
+    }
+    
+    /* Floating orbs */
+    .orb{
+      position:fixed;
+      border-radius:50%;
+      filter:blur(60px);
+      opacity:.3;
+      pointer-events:none;
+      z-index:1;
+      animation: float 20s ease-in-out infinite;
+    }
+    .orb1{
+      width:400px;height:400px;
+      background:radial-gradient(circle, var(--accent), transparent);
+      top:-100px;left:-100px;
+    }
+    .orb2{
+      width:300px;height:300px;
+      background:radial-gradient(circle, var(--accent-2), transparent);
+      bottom:-50px;right:-50px;
+      animation-delay:-10s;
+    }
+    
+    @keyframes float{
+      0%,100%{transform:translate(0,0) scale(1)}
+      33%{transform:translate(30px,-30px) scale(1.1)}
+      66%{transform:translate(-20px,20px) scale(0.95)}
+    }
+    
+    .container{
+      position:relative;
+      z-index:10;
+      max-width:1200px;
+      margin:0 auto;
+      padding:40px 24px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      min-height:100vh;
+    }
+    
+    /* Logo area */
+    .logo-section{
+      text-align:center;
+      margin-bottom:48px;
+    }
+    
+    .logo-wrapper img{
+      width: 250px;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+    
+    /* Main card */
+    .main-card{
+      background:linear-gradient(180deg, rgba(255,255,255,.98), rgba(248,250,251,.98));
+      border:1px solid rgba(0,117,117,.1);
+      border-radius:var(--radius);
+      padding:48px;
+      box-shadow:var(--shadow);
+      backdrop-filter:blur(20px);
+      max-width:900px;
+      width:100%;
+      position:relative;
+      overflow:hidden;
+      animation: fadeInUp 0.8s ease-out 0.2s both;
+    }
+    
+    .main-card::before{
+      content:'';
+      position:absolute;
+      top:0;left:0;right:0;
+      height:1px;
+      background:linear-gradient(90deg, transparent, var(--accent), transparent);
+      animation: shimmer 3s ease-in-out infinite;
+    }
+    
+    @keyframes shimmer{
+      0%,100%{opacity:0.5}
+      50%{opacity:1}
+    }
+    
+    .status-badge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      font-size:13px;
+      font-weight:600;
+      color:var(--accent-2);
+      background:rgba(64,224,208,.1);
+      border:1px solid rgba(64,224,208,.3);
+      padding:8px 14px;
+      border-radius:999px;
+      margin-bottom:24px;
+      animation: pulse-border 2s ease-in-out infinite;
+    }
+    
+    .status-badge::before{
+      content:'';
+      width:8px;height:8px;
+      background:var(--accent-2);
+      border-radius:50%;
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+    
+    @keyframes pulse-border{
+      0%,100%{border-color:rgba(64,224,208,.3)}
+      50%{border-color:rgba(64,224,208,.6)}
+    }
+    
+    @keyframes pulse-dot{
+      0%,100%{opacity:1}
+      50%{opacity:0.5}
+    }
+    
+    h1{
+      margin:0 0 16px;
+      font-size:clamp(36px, 5vw, 56px);
+      font-weight:800;
+      letter-spacing:-0.5px;
+      line-height:1.1;
+      background:linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 50%, var(--accent-3) 100%);
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+      text-shadow: 0 0 60px rgba(0,117,117,.2);
+    }
+    
+    .tagline{
+      font-size:clamp(18px, 2vw, 22px);
+      color:var(--muted);
+      margin:0 0 40px;
+      font-weight:400;
+      line-height:1.5;
+    }
+    
+    /* Services grid */
+    .services{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));
+      gap:16px;
+      margin:32px 0;
+    }
+    
+    .service-card{
+      background:linear-gradient(145deg, rgba(255,255,255,.95), rgba(250,252,254,.95));
+      border:1px solid rgba(0,117,117,.06);
+      border-radius:16px;
+      padding:20px;
+      transition:all 0.3s ease;
+      position:relative;
+      overflow:hidden;
+      box-shadow: 0 1px 3px rgba(0,0,0,.02);
+    }
+    
+    .service-card::before{
+      content:'';
+      position:absolute;
+      top:0;left:0;right:0;bottom:0;
+      background:linear-gradient(135deg, var(--accent), var(--accent-2));
+      opacity:0;
+      transition:opacity 0.3s ease;
+      z-index:-1;
+    }
+    
+    .service-card:hover{
+      transform:translateY(-4px);
+      border-color:rgba(0,117,117,.15);
+      box-shadow:0 8px 24px rgba(0,117,117,.08);
+      background:linear-gradient(145deg, #ffffff, #fdfefe);
+    }
+    
+    .service-card:hover::before{
+      opacity:0.02;
+    }
+    
+    .service-icon{
+      width:48px;
+      height:48px;
+      margin-bottom:12px;
+      background:linear-gradient(135deg, var(--accent), var(--accent-2));
+      border-radius:12px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:24px;
+      box-shadow:0 4px 12px rgba(0,117,117,.3);
+    }
+    
+    .service-title{
+      font-size:16px;
+      font-weight:700;
+      margin:0 0 8px;
+      color:var(--text);
+    }
+    
+    .service-desc{
+      font-size:14px;
+      color:var(--muted);
+      margin:0;
+      line-height:1.5;
+    }
+    
+    /* CTA section */
+    .cta-section{
+      display:flex;
+      flex-wrap:wrap;
+      gap:16px;
+      margin-top:40px;
+    }
+    
+    .btn{
+      appearance:none;
+      border:none;
+      cursor:pointer;
+      padding:14px 28px;
+      border-radius:12px;
+      font-weight:600;
+      font-size:16px;
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      transition:all 0.3s ease;
+      position:relative;
+      overflow:hidden;
+    }
+    
+    .btn-primary{
+      background:linear-gradient(135deg, var(--accent), var(--accent-2));
+      color:white;
+      box-shadow:0 8px 24px rgba(0,117,117,.3);
+    }
+    
+    .btn-primary::before{
+      content:'';
+      position:absolute;
+      top:50%;left:50%;
+      width:0;height:0;
+      background:rgba(255,255,255,.2);
+      border-radius:50%;
+      transform:translate(-50%,-50%);
+      transition:width 0.6s, height 0.6s;
+    }
+    
+    .btn-primary:hover::before{
+      width:300px;
+      height:300px;
+    }
+    
+    .btn-primary:hover{
+      transform:translateY(-2px);
+      box-shadow:0 12px 32px rgba(0,117,117,.4);
+    }
+    
+    .btn-secondary{
+      background:transparent;
+      color:var(--accent);
+      border:2px solid rgba(0,117,117,.2);
+    }
+    
+    .btn-secondary:hover{
+      border-color:var(--accent);
+      background:rgba(0,117,117,.05);
+      transform:translateY(-2px);
+    }
+    
+    /* Meta info */
+    .meta-info{
+      display:flex;
+      flex-wrap:wrap;
+      gap:24px;
+      margin-top:32px;
+      padding-top:32px;
+      border-top:1px solid rgba(0,117,117,.08);
+      font-size:14px;
+      color:var(--muted);
+    }
+    
+    .meta-item{
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+    
+    .meta-item::before{
+      content:'';
+      width:4px;
+      height:4px;
+      background:var(--accent);
+      border-radius:50%;
+    }
+    
+    .meta-item a{
+      color:var(--accent);
+      text-decoration:none;
+      transition:color 0.3s ease;
+    }
+    
+    .meta-item a:hover{
+      color:var(--accent-2);
+      text-decoration:underline;
+    }
+    
+    /* Animations */
+    @keyframes fadeInDown{
+      from{opacity:0;transform:translateY(-30px)}
+      to{opacity:1;transform:translateY(0)}
+    }
+    
+    @keyframes fadeInUp{
+      from{opacity:0;transform:translateY(30px)}
+      to{opacity:1;transform:translateY(0)}
+    }
+    
+    /* Responsive */
+    @media (max-width:768px){
+      .container{padding:24px 16px}
+      .main-card{padding:32px 24px}
+      .services{grid-template-columns:1fr}
+      h1{font-size:32px}
+      .tagline{font-size:18px}
+      
+      .logo-wrapper{
+        padding:20px;
+        width:100%;
+        max-width:calc(100vw - 32px);
+        overflow:visible;
+      }
+      
+      .logo-wrapper img{
+        max-width:250px;
+        width:100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  
+  <div class="container">
+    <div class="logo-section">
+      <div class="logo-wrapper">
+        <img src="logo.png" alt="Typex" />
+      </div>
+    </div>
+    
+    <main class="main-card" role="main">
+      <span class="status-badge">Site Under Maintenance</span>
+      
+      <h1>Complete IT Infrastructure Solutions</h1>
+      <p class="tagline">We're currently updating our website to serve you better. Our team is still available to support your business with enterprise-grade connectivity, communication, and software services.</p>
+      
+      <div class="services">
+        <div class="service-card">
+          <div class="service-icon">🌐</div>
+          <h3 class="service-title">Network Connectivity</h3>
+          <p class="service-desc">High-performance network infrastructure design and implementation</p>
+        </div>
+        
+        <div class="service-card">
+          <div class="service-icon">📞</div>
+          <h3 class="service-title">VoIP Solutions</h3>
+          <p class="service-desc">Hosted & on-premise PBX systems for seamless communication</p>
+        </div>
+        
+        <div class="service-card">
+          <div class="service-icon">💼</div>
+          <h3 class="service-title">Business Software</h3>
+          <p class="service-desc">Custom software solutions to run and scale your operations</p>
+        </div>
+      </div>
+      
+      <div class="cta-section">
+        <a href="tel:01912263777" class="btn btn-primary">
+          Call Us: 0191 226 3777
+          <span style="font-size:20px">📞</span>
+        </a>
+        <a href="mailto:info@typex.com" class="btn btn-secondary">
+          Email Us
+        </a>
+      </div>
+      
+      <div class="meta-info">
+        <div class="meta-item">
+          Business Hours: Mon-Fri 9am–5pm
+        </div>
+        <div class="meta-item">
+          Email: <a href="mailto:info@typex.com">info@typex.com</a>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+</html>
